@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 import Heading from '../../components/Heading';
-import Image from 'next/image';
 import { getReviews } from '@/lib/reviews';
 
 export const metadata = {
@@ -12,7 +11,7 @@ const ReviewsPage = async () => {
   const reviews = await getReviews();
   return (
     <>
-      <Heading>Reviews</Heading>
+      <Heading children={'Reviews'} />
       <ul className="flex flex-row gap-3">
         {reviews.map((review) => (
           <li
@@ -20,7 +19,7 @@ const ReviewsPage = async () => {
             className="bg-white border w-80 rounded shadow hover:shadow-xl"
           >
             <Link href={`/reviews/${review.slug}`}>
-              <Image
+              <img
                 src={review.image}
                 alt=""
                 width="320"

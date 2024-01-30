@@ -1,6 +1,5 @@
 import React from 'react';
 import Heading from '@/components/Heading';
-import Image from 'next/image';
 import Link from 'next/link';
 import { getFeaturedReview } from '@/lib/reviews';
 
@@ -13,14 +12,14 @@ const HomePage = async () => {
 
   return (
     <>
-      <Heading>Indie Gamer</Heading>
+      <Heading children={'Indie Gamer'} />
       <p className="pb-3">Only thhe best indie games, ewviewed for you.</p>
       <div className="bg-white border rounded shadow w-80 hover:shadow-xl sm:w-full">
         <Link
           href={`/reviews/${reviews.slug}`}
           className="flex flex-col sm:flex-row"
         >
-          <Image
+          <img
             src={reviews.image}
             alt=""
             width="320"

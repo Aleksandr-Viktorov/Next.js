@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Heading from '../../../components/Heading';
-import Image from 'next/image';
 import { getReview, getSlugs } from '@/lib/reviews';
 import ShareLinkButton from '@/components/ShareLinkButton';
 
@@ -24,13 +23,13 @@ const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
   const review = await getReview(slug);
   return (
     <>
-      <Heading>{review.title}</Heading>
+      <Heading children={review.title} />
       <div className="flex gap-3 items-baseline">
         <p className="italic pb-2">{review.date}</p>
         <ShareLinkButton />
       </div>
 
-      <Image
+      <img
         src={review.image}
         alt=""
         width="640"
