@@ -1,11 +1,9 @@
-import React, { FC } from 'react';
+import React from 'react';
+import type { FC } from 'react';
+import { getReview, getSlugs } from '../../../lib/reviews';
+import ShareLinkButton from '../../../components/ShareLinkButton';
+import type { ReviewPageProps } from '../../../app/types';
 import Heading from '../../../components/Heading';
-import { getReview, getSlugs } from '@/lib/reviews';
-import ShareLinkButton from '@/components/ShareLinkButton';
-
-interface ReviewPageProps {
-  params: { slug: string };
-}
 
 export const generateStaticParams = async () => {
   const slugs = await getSlugs();
@@ -14,9 +12,7 @@ export const generateStaticParams = async () => {
 
 export const generateMetadata = async ({ params: { slug } }) => {
   const review = await getReview(slug);
-  return {
-    title: review.title,
-  };
+  return { title: review.title };
 };
 
 const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
@@ -28,7 +24,6 @@ const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
         <p className="italic pb-2">{review.date}</p>
         <ShareLinkButton />
       </div>
-
       <img
         src={review.image}
         alt=""

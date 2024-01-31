@@ -1,16 +1,13 @@
 import React from 'react';
-import type { FC } from 'react';
 import Heading from '../../components/Heading';
 
-export const metadata = {
-  title: 'About',
-};
+export const metadata = { title: 'About' };
 
 const AboutPage = () => {
   return (
     <>
-      <Heading>About</Heading>
-      <p>Reviews</p>
+      <Heading children="About" />
+      <p>About page</p>
     </>
   );
 };

@@ -1,11 +1,9 @@
 import React from 'react';
-import Heading from '@/components/Heading';
+import Heading from '../components/Heading';
 import Link from 'next/link';
-import { getFeaturedReview } from '@/lib/reviews';
+import { getFeaturedReview } from '../lib/reviews';
 
-export const metadata = {
-  title: 'Indie Gamer',
-};
+export const metadata = { title: 'Indie Gamer' };
 
 const HomePage = async () => {
   const reviews = await getFeaturedReview();

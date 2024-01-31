@@ -1,11 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
 import Heading from '../../components/Heading';
-import { getReviews } from '@/lib/reviews';
+import { getReviews } from '../../lib/reviews';
 
-export const metadata = {
-  title: 'Reviews',
-};
+export const metadata = { title: 'Reviews' };
 
 const ReviewsPage = async () => {
   const reviews = await getReviews();
