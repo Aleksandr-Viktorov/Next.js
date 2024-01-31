@@ -1,4 +1,5 @@
 import ShareLinkButton from './ShareLinkButton';
+import React from 'react';
 
 const ShareButtons = () => {
   return (

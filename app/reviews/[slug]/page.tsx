@@ -1,19 +1,24 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import type { FC } from 'react';
 import { getReview, getSlugs } from '../../../lib/reviews';
 import ShareLinkButton from '../../../components/ShareLinkButton';
-import type { ReviewPageProps } from '../../../app/types';
+import type { ReviewPageParams, ReviewPageProps } from '../../../app/types';
 import Heading from '../../../components/Heading';
 
-export const generateStaticParams = async () => {
+export async function generateStaticParams(): Promise<ReviewPageParams[]> {
   const slugs = await getSlugs();
   return slugs.map((slug) => ({ slug }));
-};
+}
 
-export const generateMetadata = async ({ params: { slug } }) => {
+export async function generateMetadata({
+  params: { slug },
+}: ReviewPageProps): Promise<Metadata> {
   const review = await getReview(slug);
-  return { title: review.title };
-};
+  return {
+    title: review.title,
+  };
+}
 
 const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
   const review = await getReview(slug);

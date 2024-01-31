@@ -1,6 +1,7 @@
 'use client';
 import { LinkIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
+import React from 'react';
 
 const ShareLinkButton = () => {
   const [clicked, setClicked] = useState<boolean>(false);

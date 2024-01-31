@@ -34,15 +34,6 @@ export const getReviews = async (): Promise<Review[]> => {
   return data.map(toReview);
 };
 
-export const getSlugs = async () => {
-  const { data } = await fetchReviews({
-    fields: ['slug'],
-    sort: ['publishedAt:desc'],
-    pagination: { pageSize: 100 },
-  });
-  return data.map(({ attributes }) => attributes.slug);
-};
-
 async function fetchReviews(parameters: any) {
   const url =
     `${CMS_URL}/api/reviews?` +
@@ -55,6 +46,15 @@ async function fetchReviews(parameters: any) {
 
   return await response.json();
 }
+
+export const getSlugs = async () => {
+  const { data } = await fetchReviews({
+    fields: ['slug'],
+    sort: ['publishedAt:desc'],
+    pagination: { pageSize: 100 },
+  });
+  return data.map(({ attributes }) => attributes.slug);
+};
 
 function toReview(item: CmsItem): Review {
   const { attributes } = item;

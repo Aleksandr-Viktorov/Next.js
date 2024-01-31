@@ -7,7 +7,11 @@ export interface Review {
 }
 
 export interface ReviewPageProps {
-  params: { slug: string };
+  params: ReviewPageParams;
+}
+
+export interface ReviewPageParams {
+  slug: string;
 }
 
 export interface CmsItem {
