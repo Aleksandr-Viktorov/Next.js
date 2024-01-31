@@ -32,7 +32,7 @@ const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
         className="rounded mb-2"
       />
       <article
-        dangerouslySetInnerHTML={{ __html: review.body }}
+        dangerouslySetInnerHTML={{ __html: review.body ?? '' }}
         className="prose prose-slate max-w-screen-sm"
       />
     </>
