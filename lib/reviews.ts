@@ -1,5 +1,5 @@
 import { marked } from 'marked';
-import type { CmsItem, Review } from '../app/types';
+import type { CmsItem, Review } from '../types';
 import qs from 'qs';
 
 const CMS_URL = 'http://localhost:1337';

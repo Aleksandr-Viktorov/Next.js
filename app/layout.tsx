@@ -2,6 +2,7 @@ import React from 'react';
 import './global.css';
 import NavBar from '../components/NavBar';
 import { exo2, orbitron } from './fonts';
+import { TEXT_COMMON } from '../constants';
 
 export const metadata = {
   title: {
@@ -19,13 +20,13 @@ const RootLayout = ({ children }) => {
         </header>
         <main className="grow py-3">{children}</main>
         <footer className="border-t py-3 text-center text-xs text-slate-500">
-          Game data and images courtesy of{' '}
+          {TEXT_COMMON.FOOTER_TEXT.DISCLAIMER}{' '}
           <a
             href="https://rawg.io/"
             target="_blank"
             className="text-orange-800 hover:underline"
           >
-            RAWG
+            {TEXT_COMMON.FOOTER_TEXT.LINK}
           </a>
         </footer>
       </body>

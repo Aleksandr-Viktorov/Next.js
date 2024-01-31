@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import type { FC } from 'react';
 import { getReview, getSlugs } from '../../../lib/reviews';
 import ShareLinkButton from '../../../components/ShareLinkButton';
-import type { ReviewPageParams, ReviewPageProps } from '../../../app/types';
+import type { ReviewPageParams, ReviewPageProps } from '../../../types';
 import Heading from '../../../components/Heading';
 
 export async function generateStaticParams(): Promise<ReviewPageParams[]> {

@@ -2,6 +2,7 @@ import React from 'react';
 import Heading from '../components/Heading';
 import Link from 'next/link';
 import { getFeaturedReview } from '../lib/reviews';
+import { TEXT_COMMON } from '../constants';
 
 export const metadata = { title: 'Indie Gamer' };
 
@@ -10,8 +11,8 @@ const HomePage = async () => {
 
   return (
     <>
-      <Heading children={'Indie Gamer'} />
-      <p className="pb-3">Only thhe best indie games, ewviewed for you.</p>
+      <Heading children="Indie Gamer" />
+      <p className="pb-3">{TEXT_COMMON.REVIEW_TITLE}</p>
       <div className="bg-white border rounded shadow w-80 hover:shadow-xl sm:w-full">
         <Link
           href={`/reviews/${reviews.slug}`}
