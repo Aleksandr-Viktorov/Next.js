@@ -1,16 +1,18 @@
 import { marked } from 'marked';
 import type { CmsItem, Review } from '../types';
 import qs from 'qs';
+import { CACHE_TAG_REVIEWS, CMS_URL } from '../constants';
 
-const CMS_URL = 'http://localhost:1337';
-
-export const getReview = async (slug: string): Promise<Review> => {
+export const getReview = async (slug: string): Promise<Review | null> => {
   const { data } = await fetchReviews({
     filters: { slug: { $eq: slug } },
     fields: ['slug', 'title', 'subtitle', 'publishedAt', 'body'],
     populate: { image: { fields: ['url'] } },
     pagination: { pageSize: 1, withCount: false },
   });
+  if (data.length === 0) {
+    return null;
+  }
   const item = data[0];
   return {
     ...toReview(item),
@@ -32,7 +34,11 @@ async function fetchReviews(parameters: any) {
   const url =
     `${CMS_URL}/api/reviews?` +
     qs.stringify(parameters, { encodeValuesOnly: true });
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    next: {
+      tags: [CACHE_TAG_REVIEWS],
+    },
+  });
 
   if (!response.ok) {
     throw new Error(`CMS returned ${response.status} for ${url}`);

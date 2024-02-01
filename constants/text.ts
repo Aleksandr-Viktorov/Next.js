@@ -11,4 +11,8 @@ export const TEXT_COMMON = {
   ABOUT: 'About',
   TWITTER: 'Twitter',
   FACEBOOK: 'Facebook',
+  NOT_FOUD: 'Not Found',
+  GO_TO_HOME: 'Return Home',
 };
+
+export const CACHE_TAG_REVIEWS = 'reviews';
