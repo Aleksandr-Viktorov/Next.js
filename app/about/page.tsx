@@ -7,7 +7,7 @@ export const metadata = { title: 'About' };
 const AboutPage = () => {
   return (
     <>
-      <Heading children="About" />
+      <Heading>{TEXT_COMMON.ABOUT}</Heading>
       <p>{TEXT_COMMON.ABOUT_PAGE}</p>
     </>
   );

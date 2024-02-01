@@ -4,12 +4,6 @@ import qs from 'qs';
 
 const CMS_URL = 'http://localhost:1337';
 
-export const getFeaturedReview = async () => {
-  const review = await getReviews();
-
-  return review[0];
-};
-
 export const getReview = async (slug: string): Promise<Review> => {
   const { data } = await fetchReviews({
     filters: { slug: { $eq: slug } },
@@ -24,12 +18,12 @@ export const getReview = async (slug: string): Promise<Review> => {
   };
 };
 
-export const getReviews = async (): Promise<Review[]> => {
+export const getReviews = async (pageSize?: number): Promise<Review[]> => {
   const { data } = await fetchReviews({
     fields: ['slug', 'title', 'subtitle', 'publishedAt'],
     populate: { image: { fields: ['url'] } },
     sort: ['publishedAt:desc'],
-    pagination: { pageSize: 6 },
+    pagination: { pageSize: pageSize ?? 6 },
   });
   return data.map(toReview);
 };
@@ -61,6 +55,7 @@ function toReview(item: CmsItem): Review {
   return {
     slug: attributes.slug,
     title: attributes.title,
+    subtitle: attributes.subtitle,
     date: attributes.publishedAt.slice(0, 'yyyy-mm-dd'.length),
     image: CMS_URL + attributes.image.data.attributes.url,
   };
