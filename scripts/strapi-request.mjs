@@ -2,7 +2,7 @@ import { writeFileSync } from 'node:fs';
 import qs from 'qs';
 
 const url =
-  'http://localhost:1337/api/reviews?' +
+  'http://127.0.0.1:1337/api/reviews?' +
   qs.stringify(
     {
       filters: { slug: { $eq: 'hades-2018' } },
