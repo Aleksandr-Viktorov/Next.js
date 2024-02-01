@@ -1,7 +1,5 @@
-*/node_modules
-node_modules
 /.next/
-.next
-*/package-lock.json*
-package-lock.json
+/node_modules/
 /out/
+/prisma/*.db
+/scripts/strapi-response.json

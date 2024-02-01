@@ -1,7 +1,9 @@
 import { marked } from 'marked';
 import type { CmsItem, Review } from '../types';
 import qs from 'qs';
-import { CACHE_TAG_REVIEWS, CMS_URL } from '../constants';
+import { CACHE_TAG_REVIEWS } from '../constants';
+
+const CMS_URL = process.env.CMS_URL;
 
 export const getReview = async (slug: string): Promise<Review | null> => {
   const { data } = await fetchReviews({
