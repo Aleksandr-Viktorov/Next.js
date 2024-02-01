@@ -13,6 +13,7 @@ export const TEXT_COMMON = {
   FACEBOOK: 'Facebook',
   NOT_FOUD: 'Not Found',
   GO_TO_HOME: 'Return Home',
+  HOME: 'Home',
 };
 
 export const CACHE_TAG_REVIEWS = 'reviews';
