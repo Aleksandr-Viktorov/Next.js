@@ -3,12 +3,12 @@ import type { Metadata } from 'next';
 import type { FC } from 'react';
 import { getReview, getSlugs } from '../../../lib/reviews';
 import ShareLinkButton from '../../../components/ShareLinkButton';
-import type { ReviewPageParams, ReviewPageProps } from '../../../types';
+import type { ReviewPageProps } from '../../../types';
 import Heading from '../../../components/Heading';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-export async function generateStaticParams(): Promise<ReviewPageParams[]> {
+export async function generateStaticParams() {
   const slugs = await getSlugs();
   return slugs.map((slug) => ({ slug }));
 }
