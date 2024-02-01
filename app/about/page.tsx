@@ -2,8 +2,6 @@ import React from 'react';
 import Heading from '../../components/Heading';
 import { TEXT_COMMON } from '../../constants';
 
-export const metadata = { title: 'About' };
-
 const AboutPage = () => {
   return (
     <>

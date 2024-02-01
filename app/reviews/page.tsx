@@ -5,10 +5,11 @@ import { getReviews } from '../../lib/reviews';
 import { TEXT_COMMON } from '../../constants';
 import Image from 'next/image';
 
-export const metadata = { title: TEXT_COMMON.REVIEWS };
+export const revalidate = 30; // seconds
 
 const ReviewsPage = async () => {
   const reviews = await getReviews();
+  reviews.map((review) => review.slug).join(', ');
   return (
     <>
       <Heading>{TEXT_COMMON.REVIEWS}</Heading>

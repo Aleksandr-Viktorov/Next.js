@@ -6,6 +6,7 @@ import ShareLinkButton from '../../../components/ShareLinkButton';
 import type { ReviewPageParams, ReviewPageProps } from '../../../types';
 import Heading from '../../../components/Heading';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams(): Promise<ReviewPageParams[]> {
   const slugs = await getSlugs();
@@ -16,6 +17,9 @@ export async function generateMetadata({
   params: { slug },
 }: ReviewPageProps): Promise<Metadata> {
   const review = await getReview(slug);
+  if (!review) {
+    notFound();
+  }
   return {
     title: review.title,
   };
@@ -23,6 +27,9 @@ export async function generateMetadata({
 
 const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
   const review = await getReview(slug);
+  if (!review) {
+    notFound();
+  }
   return (
     <>
       <Heading>{review.title}</Heading>
