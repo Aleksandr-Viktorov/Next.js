@@ -1,5 +1,5 @@
 import { marked } from 'marked';
-import type { CmsItem, Review } from '../types';
+import type { CmsItem, Review, ReviewResponseDto } from '../types';
 import qs from 'qs';
 import { CACHE_TAG_REVIEWS } from '../constants';
 
@@ -22,14 +22,20 @@ export const getReview = async (slug: string): Promise<Review | null> => {
   };
 };
 
-export const getReviews = async (pageSize?: number): Promise<Review[]> => {
-  const { data } = await fetchReviews({
+export const getReviews = async (
+  pageSize: number,
+  page?: number
+): Promise<ReviewResponseDto> => {
+  const { data, meta } = await fetchReviews({
     fields: ['slug', 'title', 'subtitle', 'publishedAt'],
     populate: { image: { fields: ['url'] } },
     sort: ['publishedAt:desc'],
-    pagination: { pageSize: pageSize ?? 6 },
+    pagination: { pageSize, page },
   });
-  return data.map(toReview);
+  return {
+    pageCount: meta.pagination.pageCount,
+    reviews: data.map(toReview),
+  };
 };
 
 async function fetchReviews(parameters: any) {

@@ -2,13 +2,13 @@ import React from 'react';
 import Heading from '../components/Heading';
 import Link from 'next/link';
 import { getReviews } from '../lib/reviews';
-import { TEXT_COMMON } from '../constants';
+import { DEFAULT_PAGE_SIZE, TEXT_COMMON } from '../constants';
 import Image from 'next/image';
 
 export const revalidate = 30; // seconds
 
 const HomePage = async () => {
-  const reviews = await getReviews(3);
+  const { reviews } = await getReviews(DEFAULT_PAGE_SIZE);
   reviews.map((review) => review.slug).join(', ');
   return (
     <>

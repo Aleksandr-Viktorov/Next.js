@@ -1,25 +1,29 @@
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import Heading from '../../components/Heading';
 import { getReviews } from '../../lib/reviews';
-import { TEXT_COMMON } from '../../constants';
-import Image from 'next/image';
+import { MAX_PAGE_SIZE, REVIEWS_PATH, TEXT_COMMON } from '../../constants';
+import { parsePageParam } from './utils/parsePageParam';
+import PaginationBar from '../../components/PaginationBar';
 
 export const revalidate = 30; // seconds
 
-const ReviewsPage = async () => {
-  const reviews = await getReviews();
+const ReviewsPage = async ({ searchParams }) => {
+  const page = parsePageParam(searchParams.page);
+  const { reviews, pageCount } = await getReviews(MAX_PAGE_SIZE, page);
   reviews.map((review) => review.slug).join(', ');
   return (
     <>
       <Heading>{TEXT_COMMON.REVIEWS}</Heading>
+      <PaginationBar page={page} href={REVIEWS_PATH} pageCount={pageCount} />
       <ul className="flex flex-row gap-3">
         {reviews.map((review, i) => (
           <li
             key={review.slug}
             className="bg-white border w-80 rounded shadow hover:shadow-xl"
           >
-            <Link href={`/reviews/${review.slug}`}>
+            <Link href={`${REVIEWS_PATH}/${review.slug}`}>
               <Image
                 src={review.image}
                 alt=""

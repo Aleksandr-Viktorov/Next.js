@@ -7,6 +7,10 @@ export interface Review {
   body?: string | Promise<string>;
 }
 
+export interface ReviewResponseDto {
+  pageCount: number;
+  reviews: Review[];
+}
 export interface ReviewPageProps {
   params: ReviewPageParams;
 }

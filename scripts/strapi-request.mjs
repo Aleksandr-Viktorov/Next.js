@@ -1,15 +1,15 @@
 import { writeFileSync } from 'node:fs';
 import qs from 'qs';
+import { MAX_PAGE_SIZE } from '../constants';
 
 const url =
   'http://127.0.0.1:1337/api/reviews?' +
   qs.stringify(
     {
-      filters: { slug: { $eq: 'hades-2018' } },
       fields: ['slug', 'title', 'subtitle', 'publishedAt'],
       populate: { image: { fields: ['url'] } },
       sort: ['publishedAt:desc'],
-      pagination: { pageSize: 6, withCount: false },
+      pagination: { pageSize: MAX_PAGE_SIZE, page: 1 },
     },
     { encodeValuesOnly: true }
   );

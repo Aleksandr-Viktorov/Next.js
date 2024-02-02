@@ -1,25 +1,25 @@
 import React from 'react';
-import Link from 'next/link';
-import { TEXT_COMMON } from '../constants';
+import { ABOUT_PATH, REVIEWS_PATH, ROOT_PATH, TEXT_COMMON } from '../constants';
+import NavLink from './NavLink';
 
 const NavBar = () => {
   return (
     <nav>
       <ul className="flex gap-2">
-        <li>
-          <Link href="/" className="font-bold font-orbitron text-orange-800">
+        <li className="font-bold font-orbitron">
+          <NavLink href={ROOT_PATH} prefetch={true}>
             {TEXT_COMMON.INDIE}
-          </Link>
+          </NavLink>
         </li>
         <li className="ml-auto">
-          <Link href="/reviews" className=" text-orange-800">
+          <NavLink href={REVIEWS_PATH} prefetch={false}>
             {TEXT_COMMON.REVIEWS}
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link href="/about" className=" text-orange-800">
+          <NavLink href={ABOUT_PATH} prefetch={false}>
             {TEXT_COMMON.ABOUT}
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </nav>
