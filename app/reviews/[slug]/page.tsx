@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import type { FC } from 'react';
-import { getReview, getSlugs } from '../../../lib/reviews';
+import { getReview, getSlugs } from '../../../lib';
 import ShareLinkButton from '../../../components/ShareLinkButton';
 import type { ReviewPageParams, ReviewPageProps } from '../../../types';
 import Heading from '../../../components/Heading';

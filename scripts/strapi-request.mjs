@@ -1,9 +1,9 @@
 import { writeFileSync } from 'node:fs';
 import qs from 'qs';
-import { MAX_PAGE_SIZE } from '../constants';
+import { MAX_PAGE_SIZE, REVIEWS_PATH } from '../constants';
 
-const url =
-  'http://127.0.0.1:1337/api/reviews?' +
+const strapiUrl =
+  `${process.env.CMS_URL}/api${REVIEWS_PATH}?` +
   qs.stringify(
     {
       fields: ['slug', 'title', 'subtitle', 'publishedAt'],
@@ -14,7 +14,7 @@ const url =
     { encodeValuesOnly: true }
   );
 
-const response = await fetch(url);
+const response = await fetch(strapiUrl);
 const body = await response.json();
 const formatted = JSON.stringify(body, null, 2);
 const file = 'scripts/strapi-response.json';

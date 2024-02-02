@@ -22,8 +22,7 @@ export const PaginationLink: FC<PaginationLinkProps> = ({
   return (
     <Link
       href={href}
-      className="border rounded text-slate-500 text-sm
-                 hover:bg-orange-100 hover:text-slate-700"
+      className="border rounded text-slate-500 text-sm hover:bg-orange-100 hover:text-slate-700"
     >
       {children}
     </Link>

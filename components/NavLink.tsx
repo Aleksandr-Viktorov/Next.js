@@ -6,10 +6,14 @@ import { usePathname } from 'next/navigation';
 interface NavLinkProps {
   children: ReactNode;
   href: string;
-  prefetch: boolean;
+  prefetch?: boolean;
 }
 
-export const NavLink: FC<NavLinkProps> = ({ children, href, prefetch }) => {
+export const NavLink: FC<NavLinkProps> = ({
+  children,
+  href,
+  prefetch = false,
+}) => {
   const pathname = usePathname();
   if (pathname === href) {
     return <span className="text-orange-800">{children}</span>;

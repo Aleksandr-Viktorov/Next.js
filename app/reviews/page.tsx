@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Heading from '../../components/Heading';
-import { getReviews } from '../../lib/reviews';
+import { getReviews } from '../../lib';
 import { MAX_PAGE_SIZE, REVIEWS_PATH, TEXT_COMMON } from '../../constants';
 import { parsePageParam } from './utils/parsePageParam';
 import PaginationBar from '../../components/PaginationBar';
@@ -17,7 +17,7 @@ const ReviewsPage = async ({ searchParams }) => {
     <>
       <Heading>{TEXT_COMMON.REVIEWS}</Heading>
       <PaginationBar page={page} href={REVIEWS_PATH} pageCount={pageCount} />
-      <ul className="flex flex-row gap-3">
+      <ul className="flex flex-wrap gap-3">
         {reviews.map((review, i) => (
           <li
             key={review.slug}

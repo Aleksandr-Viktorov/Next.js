@@ -1,9 +1,9 @@
 import React from 'react';
 import Heading from '../components/Heading';
 import Link from 'next/link';
-import { getReviews } from '../lib/reviews';
 import { DEFAULT_PAGE_SIZE, TEXT_COMMON } from '../constants';
 import Image from 'next/image';
+import { getReviews } from '../lib';
 
 export const revalidate = 30; // seconds
 
