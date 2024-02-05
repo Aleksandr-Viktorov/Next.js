@@ -1,4 +1,5 @@
 import React from 'react';
+import type { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Heading from '../../components/Heading';
@@ -6,17 +7,25 @@ import { getReviews } from '../../lib';
 import { MAX_PAGE_SIZE, REVIEWS_PATH, TEXT_COMMON } from '../../constants';
 import { parsePageParam } from './utils/parsePageParam';
 import PaginationBar from '../../components/PaginationBar';
+import SearchBox from '../../components/SearchBox';
 
 export const revalidate = 30; // seconds
 
-const ReviewsPage = async ({ searchParams }) => {
-  const page = parsePageParam(searchParams.page);
+interface ReviewsPageProps {
+  searchParams: { page: string };
+}
+
+const ReviewsPage: FC<ReviewsPageProps> = async ({ searchParams }) => {
+  const page = parsePageParam(searchParams?.page);
   const { reviews, pageCount } = await getReviews(MAX_PAGE_SIZE, page);
-  reviews.map((review) => review.slug).join(', ');
+
   return (
     <>
       <Heading>{TEXT_COMMON.REVIEWS}</Heading>
-      <PaginationBar page={page} href={REVIEWS_PATH} pageCount={pageCount} />
+      <div className="flex justify-between pb-3">
+        <PaginationBar href="/reviews" page={page} pageCount={pageCount} />
+        <SearchBox />
+      </div>
       <ul className="flex flex-wrap gap-3">
         {reviews.map((review, i) => (
           <li

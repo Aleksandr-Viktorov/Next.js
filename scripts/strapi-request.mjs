@@ -1,9 +1,9 @@
 import { writeFileSync } from 'node:fs';
 import qs from 'qs';
-import { MAX_PAGE_SIZE, REVIEWS_PATH } from '../constants';
+import { MAX_PAGE_SIZE } from '../constants';
 
 const strapiUrl =
-  `${process.env.CMS_URL}/api${REVIEWS_PATH}?` +
+  `${process.env.CMS_URL}/api/reviews?` +
   qs.stringify(
     {
       fields: ['slug', 'title', 'subtitle', 'publishedAt'],

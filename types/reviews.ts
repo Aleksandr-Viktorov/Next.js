@@ -36,3 +36,5 @@ export interface ImageDataDto {
   id: number;
   attributes: { url: string };
 }
+
+export type SearchableReview = Pick<Review, 'slug' | 'title'>;

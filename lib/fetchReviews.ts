@@ -1,11 +1,12 @@
-import { CACHE_TAG_REVIEWS, REVIEWS_PATH } from '../constants';
+import { CACHE_TAG_REVIEWS } from '../constants';
 import qs from 'qs';
 
 //TODO add type for parameters
-export async function fetchReviews(parameters: any) {
+export const fetchReviews = async (params: unknown) => {
   const url =
-    `${process.env.CMS_URL}/api${REVIEWS_PATH}?` +
-    qs.stringify(parameters, { encodeValuesOnly: true });
+    `http://localhost:1337/api/reviews?` +
+    qs.stringify(params, { encodeValuesOnly: true });
+
   const response = await fetch(url, {
     next: {
       tags: [CACHE_TAG_REVIEWS],
@@ -17,4 +18,4 @@ export async function fetchReviews(parameters: any) {
   }
 
   return await response.json();
-}
+};

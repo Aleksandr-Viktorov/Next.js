@@ -11,7 +11,7 @@ interface PaginationBarProps {
 
 const PaginationBar: FC<PaginationBarProps> = ({ page, href, pageCount }) => {
   return (
-    <div className="flex gap-2 items-center pb-3">
+    <div className="flex gap-2 items-centers">
       <PaginationLink href={`${href}?page=${page - 1}`} enabled={page > 1}>
         <ChevronLeftIcon className="h-5 w-5" />
         <span className="sr-only">{TEXT_COMMON.PREVIOUS_PAGE}</span>
