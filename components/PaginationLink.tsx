@@ -14,7 +14,7 @@ export const PaginationLink: FC<PaginationLinkProps> = ({
 }) => {
   if (!enabled) {
     return (
-      <span className="border cursor-not-allowed rounded text-slate-300 text-sm">
+      <span className="border cursor-not-allowed rounded text-slate-300 text-sm flex items-center">
         {children}
       </span>
     );
@@ -22,7 +22,7 @@ export const PaginationLink: FC<PaginationLinkProps> = ({
   return (
     <Link
       href={href}
-      className="border rounded text-slate-500 text-sm hover:bg-orange-100 hover:text-slate-700"
+      className="border rounded text-slate-500 text-sm hover:bg-orange-100 hover:text-slate-700 flex items-center"
     >
       {children}
     </Link>
