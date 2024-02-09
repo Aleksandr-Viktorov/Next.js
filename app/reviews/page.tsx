@@ -35,7 +35,7 @@ const ReviewsPage: FC<ReviewsPageProps> = async ({ searchParams }) => {
             <Link href={`${REVIEWS_PATH}/${review.slug}`}>
               <Image
                 src={review.image}
-                alt=""
+                alt={review.title}
                 width="320"
                 height="180"
                 className="rounded-t mb-2"

@@ -16,6 +16,12 @@ export const TEXT_COMMON = {
   PAGE: 'Page',
   PREVIOUS_PAGE: 'Previous Page',
   NEXT_PAGE: 'Next Page',
+  COMMENTS: 'Comments',
+  REVIEW: 'review',
+  FORM_QUESION: 'Already played {{title}}? Have your say!',
+  FORM_NAME: 'Your name',
+  FORM_FEEDBACK: 'Your feedback',
+  SUBMIT: 'Submit',
 };
 
 export const CACHE_TAG_REVIEWS = 'reviews';

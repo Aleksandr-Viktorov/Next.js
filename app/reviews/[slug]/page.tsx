@@ -1,12 +1,16 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import type { FC } from 'react';
-import { getReview, getSlugs } from '../../../lib';
-import ShareLinkButton from '../../../components/ShareLinkButton';
-import type { ReviewPageParams, ReviewPageProps } from '../../../types';
-import Heading from '../../../components/Heading';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/20/solid';
+import { getReview, getSlugs } from '@/lib';
+import ShareLinkButton from '@/components/ShareLinkButton';
+import type { ReviewPageParams, ReviewPageProps } from '@/types';
+import Heading from '@/components/Heading';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import CommentList from '@/components/CommentList';
+import CommentForm from '@/components/CommentForm';
+import { TEXT_COMMON } from '@/constants';
 
 export async function generateStaticParams(): Promise<ReviewPageParams[]> {
   const slugs = await getSlugs();
@@ -50,6 +54,14 @@ const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
         dangerouslySetInnerHTML={{ __html: review.body ?? '' }}
         className="prose prose-slate max-w-screen-sm"
       />
+      <section className="border-dashed border-t max-w-screen-sm mt-3 py-3">
+        <h2 className="font-bold flex gap-2 items-center text-xl">
+          <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
+          {TEXT_COMMON.COMMENTS}
+        </h2>
+        <CommentForm title={review.title} />
+        <CommentList />
+      </section>
     </>
   );
 };
