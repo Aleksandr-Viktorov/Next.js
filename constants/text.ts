@@ -20,8 +20,9 @@ export const TEXT_COMMON = {
   REVIEW: 'review',
   FORM_QUESION: 'Already played {{title}}? Have your say!',
   FORM_NAME: 'Your name',
-  FORM_FEEDBACK: 'Your feedback',
+  FORM_FEEDBACK: 'Your comment',
   SUBMIT: 'Submit',
+  NO_COMMENTS: 'No comments yet',
 };
 
 export const CACHE_TAG_REVIEWS = 'reviews';

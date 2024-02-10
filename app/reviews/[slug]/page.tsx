@@ -59,8 +59,8 @@ const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
           <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
           {TEXT_COMMON.COMMENTS}
         </h2>
-        <CommentForm title={review.title} />
-        <CommentList />
+        <CommentForm title={review.title} slug={slug} />
+        <CommentList slug={slug} />
       </section>
     </>
   );

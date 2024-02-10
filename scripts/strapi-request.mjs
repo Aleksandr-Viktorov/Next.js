@@ -1,6 +1,5 @@
 import { writeFileSync } from 'node:fs';
 import qs from 'qs';
-import { MAX_PAGE_SIZE } from '../constants';
 
 const strapiUrl =
   `${process.env.CMS_URL}/api/reviews?` +
@@ -9,7 +8,7 @@ const strapiUrl =
       fields: ['slug', 'title', 'subtitle', 'publishedAt'],
       populate: { image: { fields: ['url'] } },
       sort: ['publishedAt:desc'],
-      pagination: { pageSize: MAX_PAGE_SIZE, page: 1 },
+      pagination: { pageSize: 15, page: 1 },
     },
     { encodeValuesOnly: true }
   );

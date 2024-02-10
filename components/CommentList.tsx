@@ -1,16 +1,24 @@
 import React from 'react';
+import type { FC } from 'react';
 import { UserCircleIcon } from '@heroicons/react/20/solid';
+import { getComments } from '@/lib/getComments';
+import { Comment } from '@/types';
+import { TEXT_COMMON } from '@/constants';
 
-const mockComments = [
-  { id: 1, user: 'Alice', message: 'good' },
-  { id: 2, user: 'Tom', message: 'ok' },
-  { id: 3, user: 'Loki', message: 'no' },
-];
+interface CommentListProps {
+  slug: string;
+}
 
-const CommentList = () => {
+const CommentList: FC<CommentListProps> = async ({ slug }) => {
+  const comments: Comment[] = await getComments(slug);
+
+  if (!comments.length) {
+    return <p className="italic mt-3">{TEXT_COMMON.NO_COMMENTS}</p>;
+  }
+
   return (
     <ul className="border mt-3 rounded">
-      {mockComments.map((comment) => (
+      {comments.map((comment) => (
         <li
           key={comment.id}
           className="border-b px-3 py-2 last:border-none odd:bg-orange-100"
