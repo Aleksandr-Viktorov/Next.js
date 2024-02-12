@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
-import type { FC, FormEvent } from 'react';
+import React from 'react';
+import type { FC } from 'react';
 import { TEXT_COMMON } from '@/constants';
 import { createCommentAction } from '@/app/reviews/[slug]/action';
-import type { ActionError, ActionState } from '@/types';
+import { useFormState } from '@/hooks';
 
 interface CommentFormProps {
   title: string;
@@ -12,26 +12,7 @@ interface CommentFormProps {
 }
 
 export const CommentForm: FC<CommentFormProps> = ({ title, slug }) => {
-  const [error, setError] = useState<ActionError | null>(null);
-  const [state, setState] = useState<ActionState | null>({
-    loading: false,
-    isError: null,
-  });
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setError(null);
-    setState({ loading: true, isError: null });
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const res = await createCommentAction(formData);
-
-    if (res?.isError) {
-      setError(res);
-    } else {
-      form.reset();
-    }
-  };
+  const { state, handleSubmit } = useFormState(createCommentAction);
 
   return (
     <form
@@ -62,9 +43,9 @@ export const CommentForm: FC<CommentFormProps> = ({ title, slug }) => {
           className="border px-2 py-1 rounded w-full"
         />
       </div>
-      {Boolean(error) && <p className="text-red-700">{error.message}</p>}
+      {state.isError && <p className="text-red-700">{state.message}</p>}
       <button
-        disabled={true}
+        disabled={state.loading}
         type="submit"
         className="bg-orange-800 rounded px-2 py-1 self-center
                    text-slate-50 w-32 hover:bg-orange-700

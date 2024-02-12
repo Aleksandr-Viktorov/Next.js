@@ -26,3 +26,10 @@ export const TEXT_COMMON = {
 };
 
 export const CACHE_TAG_REVIEWS = 'reviews';
+
+export const VALIDATE_MESSAGE = {
+  NAME_IS_REQUIRED: 'Name is required',
+  NAME_MAX_LENGTH: 'Name cannot be longer than 50 characters',
+  COMMENT_REQUIRED: 'Comment is required',
+  COMMENT_MAX_LENGTH: 'Comment cannot be longer than 500 characters',
+};

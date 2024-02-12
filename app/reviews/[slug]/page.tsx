@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import type { FC } from 'react';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/20/solid';
@@ -11,6 +11,7 @@ import { notFound } from 'next/navigation';
 import CommentList from '@/components/CommentList';
 import CommentForm from '@/components/CommentForm';
 import { TEXT_COMMON } from '@/constants';
+import CommentListSkeleton from '@/components/CommentListSkeleton';
 
 export async function generateStaticParams(): Promise<ReviewPageParams[]> {
   const slugs = await getSlugs();
@@ -24,9 +25,7 @@ export async function generateMetadata({
   if (!review) {
     notFound();
   }
-  return {
-    title: review.title,
-  };
+  return { title: review.title };
 }
 
 const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
@@ -60,7 +59,9 @@ const ReviewPage: FC<ReviewPageProps> = async ({ params: { slug } }) => {
           {TEXT_COMMON.COMMENTS}
         </h2>
         <CommentForm title={review.title} slug={slug} />
-        <CommentList slug={slug} />
+        <Suspense fallback={<CommentListSkeleton />}>
+          <CommentList slug={slug} />
+        </Suspense>
       </section>
     </>
   );

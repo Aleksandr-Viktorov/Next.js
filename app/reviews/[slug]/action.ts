@@ -1,28 +1,33 @@
 'use server';
 
 import { createComment } from '@/lib/createComment';
-import type { ActionError } from '@/types';
+import type { ActionError, CreateCommentDto } from '@/types';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { validate } from './validate';
+import { VALIDATE_MESSAGE } from '@/constants';
 
 export const createCommentAction = async (
   formData: FormData
 ): Promise<undefined | ActionError> => {
   if (!formData.get('user')) {
-    return { isError: true, message: 'Name field id required!' };
+    return {
+      isError: true,
+      message: VALIDATE_MESSAGE.NAME_IS_REQUIRED,
+      loading: false,
+    };
   }
 
   const data = {
-    slug: formData.get('slug') as string,
-    user: formData.get('user') as string,
-    message: formData.get('message') as string,
-  };
+    slug: formData.get('slug'),
+    user: formData.get('user'),
+    message: formData.get('message'),
+  } as CreateCommentDto;
 
-  const error = validate(data);
+  const error: string = validate(data);
 
   if (error) {
-    return { isError: true, message: error };
+    return { isError: true, message: error, loading: false };
   }
 
   await createComment(data);

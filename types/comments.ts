@@ -8,12 +8,10 @@ export interface Comment {
 
 export type CreateCommentDto = Omit<Comment, 'postedAt' | 'id'>;
 
+export type Action = (formData: FormData) => Promise<undefined | ActionError>;
+
 export interface ActionError {
   isError: boolean;
-  message: string;
-}
-
-export interface ActionState {
-  isError: boolean;
   loading: boolean;
+  message: string;
 }
