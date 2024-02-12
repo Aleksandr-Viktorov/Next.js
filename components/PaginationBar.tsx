@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React from 'react';
+import type { FC } from 'react';
 import { TEXT_COMMON } from '../constants';
 import PaginationLink from './PaginationLink';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';

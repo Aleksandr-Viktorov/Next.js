@@ -2,12 +2,12 @@ import React from 'react';
 import type { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Heading from '../../components/Heading';
-import { getReviews } from '../../lib';
-import { MAX_PAGE_SIZE, REVIEWS_PATH, TEXT_COMMON } from '../../constants';
-import { parsePageParam } from './utils/parsePageParam';
-import PaginationBar from '../../components/PaginationBar';
-import SearchBox from '../../components/SearchBox';
+import Heading from '@/components/Heading';
+import { getReviews } from '@/lib';
+import { MAX_PAGE_SIZE, REVIEWS_PATH, TEXT_COMMON } from '@/constants';
+import { parsePageParam } from './utils';
+import PaginationBar from '@/components/PaginationBar';
+import SearchBox from '@/components/SearchBox';
 
 export const revalidate = 30; // seconds
 

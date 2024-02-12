@@ -44,7 +44,7 @@ const SearchBox = () => {
       <Combobox onChange={handleChange}>
         <Combobox.Input
           value={query}
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="Search…"
           className="border px-2 py-1 rounded w-full"
         />

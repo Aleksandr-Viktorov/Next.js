@@ -1,8 +1,9 @@
-import React from 'react';
-import './global.css';
+import React, { Suspense } from 'react';
 import NavBar from '../components/NavBar';
 import { exo2, orbitron } from './fonts';
 import { TEXT_COMMON } from '../constants';
+import Loading from './loading';
+import './global.css';
 
 const RootLayout = ({ children }) => {
   return (
@@ -11,9 +12,11 @@ const RootLayout = ({ children }) => {
         <header className="border-b pb-2">
           <NavBar />
         </header>
-        <main className="grow py-3">{children}</main>
+        <main className="grow py-3">
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </main>
         <footer className="border-t py-3 text-center text-xs text-slate-500">
-          {TEXT_COMMON.FOOTER_TEXT.DISCLAIMER}{' '}
+          {TEXT_COMMON.FOOTER_TEXT.DISCLAIMER}
           <a
             href="https://rawg.io/"
             target="_blank"
